@@ -49,12 +49,6 @@ A complete copy-and-paste tutorial is included here:
 
 [`tutorial.lua`](./tutorial.lua)
 
-You can also run the tutorial directly after loading REM UI:
-
-```lua
-loadstring(game:HttpGet("https://raw.githubusercontent.com/9mfg/rem-ui/main/rem-ui-v5.lua"))()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/9mfg/rem-ui/main/tutorial.lua"))()
-```
 
 The tutorial demonstrates every main REM control and clearly marks where your own code should go.
 
