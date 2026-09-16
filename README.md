@@ -4,7 +4,7 @@
 ## Load REM UI
 
 ```lua
-loadstring(game:HttpGet("https://raw.githubusercontent.com/9mfg/rem-ui/main/rem-ui-v5.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/9mfg/rem-ui/main/rem.lua"))()
 ```
 
 After loading, the library is exposed globally as `Rem`:
