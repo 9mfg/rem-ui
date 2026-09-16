@@ -1,4 +1,4 @@
-# REM v5
+# REM
 
 REM v5 is an animated Lua UI library built for Matcha's Drawing API. It is designed so scripts can add their own tabs, buttons, toggles, sliders, dropdowns, notifications and settings without rebuilding the interface.
 
