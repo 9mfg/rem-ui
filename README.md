@@ -20,7 +20,7 @@ local UI = Rem
 # Quick Start
 
 ```lua
-loadstring(game:HttpGet("https://raw.githubusercontent.com/9mfg/rem-ui/main/rem-ui-v5.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/9mfg/rem-ui/main/rem.lua"))()
 
 local UI = Rem
 
