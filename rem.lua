@@ -59,8 +59,7 @@ local function line(id,x1,y1,x2,y2,c,opacity,z)
  local d=obj(id,"Line");d.From=V(x+x1*S,y+y1*S);d.To=V(x+x2*S,y+y2*S)
  d.Thickness=math.max(1,1.65*S);d.Color=c;d.Transparency=a*opacity;d.ZIndex=z or 45;d.Visible=a*opacity>0.005
 end
--- Original vector strokes. AddTab accepts Icon="home"/"gear"/"script",
--- or a custom array of {x1,y1,x2,y2} strokes using a 20 x 20 coordinate space.
+
 local paths={
  home={{2,9,10,2},{10,2,18,9},{4,8,4,18},{4,18,8,18},{8,18,8,12},{8,12,12,12},{12,12,12,18},{12,18,16,18},{16,18,16,8}},
  close={{5,5,15,15},{15,5,5,15}},
@@ -87,7 +86,7 @@ end
 local function fire(fn,...)
  if type(fn)~="function" then return end
  local args={...}
- -- Callbacks can yield without blocking rendering; errors become notifications.
+
  task.spawn(function()
   local ok,err=pcall(function() fn(unpackArgs(args)) end)
   if not ok and app.Alive then app:Notify({Title="Script error",Content=tostring(err),Type="error",Duration=6}) end
@@ -99,7 +98,7 @@ function app:Notify(options,message)
  local n={id=uid(),title=short(options.Title or "rem",32),message=short(options.Content or "",48),
   kind=options.Type or "info",duration=clamp(tonumber(options.Duration) or 4,1,20),time=tick()}
  notices[#notices+1]=n
- -- Fixed-size queue and reusable draw slots prevent notification allocation leaks.
+
  if #notices>4 then local old=table.remove(notices,1);animations[old.id.."y"]=nil end
  return n.id
 end
@@ -160,8 +159,7 @@ function Tab:AddSlider(o) return self:_add("slider",o) end
 function Tab:AddDropdown(o) return self:_add("dropdown",o) end
 function Tab:AddLabel(o) if type(o)=="string" then o={Title=o} end;return self:_add("label",o) end
 local function replayTab(tab)
- -- Animation state belongs to a visit, while control values belong to the tab.
- -- Reset presentation only: do not change values or invoke user callbacks.
+
  animations.content=0;contentA=0;popup=nil;slide=nil;capture=nil
  for _,c in ipairs(tab.Controls) do
   local id=c.Id
@@ -276,7 +274,7 @@ local function render()
  if capture and active then
   for k=8,254 do
    local held=iskeypressed(k)
-   -- Ignore generic modifier aliases; capture left/right variants instead.
+
    if held and not capture.keys[k] and k~=16 and k~=17 and k~=18 then
     if k~=27 then app:SetKeybind(k) end
     capture=nil;break
@@ -345,7 +343,7 @@ local function render()
   rect(id.."badge",tx+13,ty+16,33,33,c,0.17*opacity,9,101)
   txt(id.."title",n.title,tx+59,ty+14,14,ink,opacity,true,103)
   txt(id.."body",n.message,tx+59,ty+39,11,muted,opacity,false,103)
-  -- Notification vectors use their own coordinates, independent of window alpha.
+
   local strokes=paths[n.kind=="success" and "check" or n.kind=="error" and "close" or "info"]
   for j,p in ipairs(strokes) do
    local d=obj(id.."icon"..j,"Line");d.From=V(tx+20+p[1],ty+22+p[2]);d.To=V(tx+20+p[3],ty+22+p[4]);d.Thickness=1.6
