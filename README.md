@@ -13,7 +13,7 @@ After loading, the library is exposed globally as `Rem`:
 local UI = Rem
 ```
 
-> REM UI requires the Matcha Drawing API. The library already provides the built-in **Home** and **Settings** tabs, so you do not need to create them yourself.
+> REM UI requires the Matcha Drawing API. The library already provides the built-in **Home** and **Settings** tabs, so you do not need to create them yourself only if you want to change them.
 
 ---
 
