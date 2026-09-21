@@ -335,7 +335,7 @@ home:AddLabel({Title="Welcome.",Icon="home"})
 local themeControl=settings:AddDropdown({Title="Theme",Description="colors",Options={"Purple","Green","Blue","Black"},Default="Purple",Callback=function(v) app:SetTheme(v) end})
 settings:AddToggle({Title="Pixel Rem",Description="Click her when shes asleep.",Default=true,Callback=function(v) app.PixelRem=v end})
 settings:_add("keybind",{Title="Menu keybind",Description="Click to record a key. Escape cancels."})
-settings:AddButton({Title="Test notification",Description="spam a toast",Icon="info",ButtonText="Test",Callback=function()
+settings:AddButton({Title="Test notification",Description="Test.",Icon="info",ButtonText="Test",Callback=function()
  app:Notify({Title="Notification test",Content="it works.",Type="success",Duration=5})
 end})
 
@@ -918,7 +918,7 @@ local function render()
   label("brand","rem",70,25,27,ink,sidebarText,true)
 
   box("headerRule",contentLeft,78,761-contentLeft,1,ink,.075,0,20)
-  label("sectionSub",selected==home and "" or selected==settings and "Fine-tune your experience." or "Everything in its place.",contentLeft+1,59,11,muted,contentA)
+  label("sectionSub",selected==home and "" or selected==settings and "" or "",contentLeft+1,59,11,muted,contentA)
 
   for i=1,math.min(5,#app.Tabs-tabOffset) do
    local tab=app.Tabs[i+tabOffset];local enter=ease(tab.Id.."appear",1,11);local py=101+(i-1)*53+(1-enter)*9
